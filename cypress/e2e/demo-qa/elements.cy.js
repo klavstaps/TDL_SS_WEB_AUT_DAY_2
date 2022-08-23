@@ -11,6 +11,20 @@ context("Elements Page", () => {
     // validate the paragraphs
     it("Filling in Text Boxes", () => {
       // add the necessary steps
+      
+      //aizpildam text box laukus
+      TextBoxPage.nameField.type("Kristaps");
+      TextBoxPage.emailField.type("kristapsklava@test.com");
+      TextBoxPage.currentAddressField.type("Riga, Latvia");
+      TextBoxPage.permanentAddressField.type("Talsi, Latvia");
+      // iesniedzam datus nospiezot Submit
+      TextBoxPage.submitButton.click();
+      // validejam iesniegtos datus pret ouput lauku
+      TextBoxPage.outputName.should("contain.text", "Kristaps");
+      TextBoxPage.outputEmail.should("contain.text", "kristapsklava@test.com");
+      TextBoxPage.outputCurrentAddress.should("contain.text", "Riga, Latvia");
+      TextBoxPage.outputPermanentAddress.should("contain.text", "Talsi, Latvia");
+
     });
   });
 
