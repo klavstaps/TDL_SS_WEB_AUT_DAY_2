@@ -1,7 +1,7 @@
 import TextBoxPage from "../../pageObjects/textBoxPage";
 import checkBoxPage from "../../pageObjects/checkBoxPage";
 import radioButtonPage from "../../pageObjects/radioButtonPage";
-
+import webTablesPage from "../../pageObjects/webTablesPage";
 
 
 context("Elements Page", () => {
@@ -81,7 +81,7 @@ context("Elements Page", () => {
     // click impressiveButton
     // validate the message
     // noButton - validate that the button exists but is disabled
-    it.only("Press radio buttons", () => {
+    it("Press radio buttons", () => {
       radioButtonPage.yesButton.click();
       radioButtonPage.outputRadioSelected.should("contain.text", "Yes");
       radioButtonPage.impressiveButton.click();
@@ -91,6 +91,9 @@ context("Elements Page", () => {
   });
 
   context("Web tables scenarios", () => {
+    beforeEach( () => {
+      webTablesPage.visit();
+    });
     // Create WebTables page object
     // Create scenario 1:
     // Click add record button
@@ -98,6 +101,21 @@ context("Elements Page", () => {
     // click submit button
     // search for the user based on previously added information
     // validate tha the user is visible
+    it.only("Web tables scenario 1", () => {
+      webTablesPage.addButton.click();
+      webTablesPage.firstNameField.type("Kristaps");
+      webTablesPage.lastNameField.type("Klava");
+      webTablesPage.emailField.type("kristaps.klava@test.com")
+      webTablesPage.ageField.type("26");
+      webTablesPage.salaryField.type(9999);
+      webTablesPage.departmentField.type("The best department");
+      webTablesPage.submitButton.click();
+      webTablesPage.searchField.type("Kristaps")
+      webTablesPage.searchButton.click();
+      webTablesPage.rows.should("contain.text", "Kristaps");
+      webTablesPage.rows.should("contain.text", "Klava");
+      webTablesPage.getRow("Kristaps").should("contain","Klava");
+    })
 
     // Create Scenario 2:
     // Delete all table rows
