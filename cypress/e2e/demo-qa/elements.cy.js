@@ -37,7 +37,7 @@ context("Elements Page", () => {
     // Create CheckBoxPage page object
     // Create checkbox scenario 1:
     // Click the "+"/expand button
-    it.only("Click the expand button and select folders and files", () => {
+    it.only("Click the expand button and select defined folders and files", () => {
       checkBoxPage.expandButton.click();
       checkBoxPage.notesButton.click();
       checkBoxPage.reactButton.click();
@@ -57,6 +57,15 @@ context("Elements Page", () => {
     // Click expand button
     // Click Office
     // Validate the checked checkboxes
+    it.only("Click expand button and select Office", () => {
+      checkBoxPage.expandButton.click();
+      checkBoxPage.officeButton.click();
+      checkBoxPage.resultOutput.should("contain.text", "office");
+      checkBoxPage.resultOutput.should("contain.text", "public");
+      checkBoxPage.resultOutput.should("contain.text", "private");
+      checkBoxPage.resultOutput.should("contain.text", "classified");
+      checkBoxPage.resultOutput.should("contain.text", "general");
+    })
   });
 
   context("Radio button scenarios", () => {

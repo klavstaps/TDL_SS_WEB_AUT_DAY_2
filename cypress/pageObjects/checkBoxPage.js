@@ -30,6 +30,10 @@ class checkBoxPage extends BasePage {
         return cy.get("div[id='result']")
     }
 
+    static get officeButton() {
+        return cy.get("label[for='tree-node-office']");
+    }
+
 }
 
 export default checkBoxPage;
