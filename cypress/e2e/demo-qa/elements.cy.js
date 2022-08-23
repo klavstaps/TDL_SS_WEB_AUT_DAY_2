@@ -101,7 +101,7 @@ context("Elements Page", () => {
     // click submit button
     // search for the user based on previously added information
     // validate tha the user is visible
-    it.only("Web tables scenario 1", () => {
+    it("Web tables scenario 1", () => {
       webTablesPage.addButton.click();
       webTablesPage.firstNameField.type("Kristaps");
       webTablesPage.lastNameField.type("Klava");
@@ -120,6 +120,13 @@ context("Elements Page", () => {
     // Create Scenario 2:
     // Delete all table rows
     // Validate that we see text - No rows found
+    it.only("Delete all rows", () => {
+      webTablesPage.rows.should("have.length", 3);
+      ["Cierra", "Alden", "Kierra"].forEach((name) => {
+        webTablesPage.deleteUser(name);
+      });
+      webTablesPage.rows.should("have.length", 0);
+    });
   });
 
   context("Buttons scenarios", () => {

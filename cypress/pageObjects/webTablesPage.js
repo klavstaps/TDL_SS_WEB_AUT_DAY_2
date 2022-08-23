@@ -46,12 +46,20 @@ class webTablesPage extends BasePage {
     }
 
     static get rows() {
-        return cy.get ("[class='rt-table']")
+        return cy.get(`.rt-tbody [role="row"]:not(.-padRow)`);
     }
 
     static getRow(itemName) {
         return this.rows.contains(itemName).parent();
-      }
+    }
+    
+    static deleteUser(userName) {
+        return this.rows
+          .contains(userName)
+          .parent()
+          .find("[title='Delete']")
+          .click();
+    }
 
 
 
