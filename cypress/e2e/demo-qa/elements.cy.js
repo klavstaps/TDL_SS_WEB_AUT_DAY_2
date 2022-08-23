@@ -2,6 +2,7 @@ import TextBoxPage from "../../pageObjects/textBoxPage";
 import checkBoxPage from "../../pageObjects/checkBoxPage";
 import radioButtonPage from "../../pageObjects/radioButtonPage";
 import webTablesPage from "../../pageObjects/webTablesPage";
+import buttonsPage from "../../pageObjects/buttonsPage"
 
 
 context("Elements Page", () => {
@@ -120,7 +121,7 @@ context("Elements Page", () => {
     // Create Scenario 2:
     // Delete all table rows
     // Validate that we see text - No rows found
-    it.only("Delete all rows", () => {
+    it("Delete all rows", () => {
       webTablesPage.rows.should("have.length", 3);
       ["Cierra", "Alden", "Kierra"].forEach((name) => {
         webTablesPage.deleteUser(name);
@@ -130,6 +131,9 @@ context("Elements Page", () => {
   });
 
   context("Buttons scenarios", () => {
+    beforeEach( () => {
+      buttonsPage.visit();
+    });
     // Create buttons clicking scenario
     // Create Buttons page
     // Check documentation https://docs.cypress.io/api/commands/and for how to perform different types of clicking
@@ -139,5 +143,13 @@ context("Elements Page", () => {
     // Validate the right click message
     // Do dynamic click
     // Validate dynamic click message
+    it("Button scenario", () => {
+      buttonsPage.doubleClickBtn.dblclick();
+      buttonsPage.doubleClickMessage.should("contain", "You have done a double click");
+      buttonsPage.rightClickBtn.rightclick();
+      buttonsPage.rightClickMessage.should("contain", "You have done a right clic");
+      buttonsPage.dynamicClickBtn.click();
+      buttonsPage.dynamicClickMessage.should("contain", "You have done a dynamic click")
+    })
   });
 });
