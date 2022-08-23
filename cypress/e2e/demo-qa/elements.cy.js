@@ -1,5 +1,7 @@
 import TextBoxPage from "../../pageObjects/textBoxPage";
 import checkBoxPage from "../../pageObjects/checkBoxPage";
+import radioButtonPage from "../../pageObjects/radioButtonPage";
+
 
 
 context("Elements Page", () => {
@@ -37,7 +39,7 @@ context("Elements Page", () => {
     // Create CheckBoxPage page object
     // Create checkbox scenario 1:
     // Click the "+"/expand button
-    it.only("Click the expand button and select defined folders and files", () => {
+    it("Click the expand button and select defined folders and files", () => {
       checkBoxPage.expandButton.click();
       checkBoxPage.notesButton.click();
       checkBoxPage.reactButton.click();
@@ -57,7 +59,7 @@ context("Elements Page", () => {
     // Click expand button
     // Click Office
     // Validate the checked checkboxes
-    it.only("Click expand button and select Office", () => {
+    it("Click expand button and select Office", () => {
       checkBoxPage.expandButton.click();
       checkBoxPage.officeButton.click();
       checkBoxPage.resultOutput.should("contain.text", "office");
@@ -69,6 +71,9 @@ context("Elements Page", () => {
   });
 
   context("Radio button scenarios", () => {
+    beforeEach( () => {
+      radioButtonPage.visit();
+    });
     // Create RadioButtons page object
     // Scenario 1:
     // Click yesButton
@@ -76,6 +81,13 @@ context("Elements Page", () => {
     // click impressiveButton
     // validate the message
     // noButton - validate that the button exists but is disabled
+    it.only("Press radio buttons", () => {
+      radioButtonPage.yesButton.click();
+      radioButtonPage.outputRadioSelected.should("contain.text", "Yes");
+      radioButtonPage.impressiveButton.click();
+      radioButtonPage.outputRadioSelected.should("contain.text", "Impressive");
+      radioButtonPage.noButton.should("have.disabled", "True")
+    })
   });
 
   context("Web tables scenarios", () => {
