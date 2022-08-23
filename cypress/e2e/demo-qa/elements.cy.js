@@ -1,4 +1,6 @@
 import TextBoxPage from "../../pageObjects/textBoxPage";
+import checkBoxPage from "../../pageObjects/checkBoxPage";
+
 
 context("Elements Page", () => {
   context("Text box scenarios", () => {
@@ -29,9 +31,25 @@ context("Elements Page", () => {
   });
 
   context("Check box scenarios", () => {
+    beforeEach( () => {
+      checkBoxPage.visit();
+    });
     // Create CheckBoxPage page object
     // Create checkbox scenario 1:
     // Click the "+"/expand button
+    it.only("Click the expand button and select folders and files", () => {
+      checkBoxPage.expandButton.click();
+      checkBoxPage.notesButton.click();
+      checkBoxPage.reactButton.click();
+      checkBoxPage.angularButton.click();
+      checkBoxPage.generalButton.click();
+      checkBoxPage.excelFileDocButton.click();
+      checkBoxPage.resultOutput.should("contain.text", "notes");
+      checkBoxPage.resultOutput.should("contain.text", "angular");
+      checkBoxPage.resultOutput.should("contain.text", "general");
+      checkBoxPage.resultOutput.should("contain.text", "excelFile");
+
+    })
     // Click Notes, React, Angular, General, Excel File.doc
     // Validate the clicked checkboxes
 
